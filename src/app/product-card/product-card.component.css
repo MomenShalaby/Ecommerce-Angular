@@ -1,0 +1,38 @@
+
+
+.img-container {
+    position: relative;
+    overflow:hidden;
+    height: 300px; 
+ }
+ 
+ .img-container img {
+   position: absolute;
+   top:0;
+   left:0;
+   width: 100%;
+   height:100%;
+   object-fit: cover
+ }
+
+
+
+ .prodCard {
+  position: relative;
+}
+
+.prodDetails {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.prodCard:hover .prodDetails {
+  display: inline-block;
+}

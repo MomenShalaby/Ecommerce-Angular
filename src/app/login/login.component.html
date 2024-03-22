@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title text-center">Login</h5>
+        </div>
+        <div class="card-body">
+          <form #loginForm="ngForm" (ngSubmit)="handleSubmitForm(loginForm)">
+            <!-- Email Field -->
+
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"
+                >Email address</label
+              >
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                required
+                minlength="3"
+                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                ngModel
+                #loginEmail="ngModel"
+              />
+            </div>
+            @if( loginEmail.invalid && (loginEmail.touched ||loginEmail.dirty)){
+            <div id="emailHelp" class="form-text text-danger mb-3">
+              @if(loginEmail.errors?.['minlength']){ Too Short Email }
+              @if(loginEmail.errors?.['pattern']){ Invalid Email Format }
+            </div>
+
+            }
+            <!-- Password Field -->
+
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label"
+                >Password</label
+              >
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                required
+                minlength="3"
+                #loginPassword="ngModel"
+                ngModel
+              />
+            </div>
+
+            @if( loginPassword.invalid&& (loginPassword.touched
+            ||loginPassword.dirty)){
+            <div id="emailHelp " class="form-text text-danger mb-3">
+              @if(loginPassword.errors?.['minlength']){ Too Short Password }
+            </div>
+            }
+
+            <div class="mb-3 form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="exampleCheck1"
+              />
+              <label class="form-check-label" for="exampleCheck1"
+                >Check me out</label
+              >
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+        <div class="card-footer text-center">
+          Don't have an account? <a routerLink="/register">Register</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

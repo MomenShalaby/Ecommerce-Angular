@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title text-center">Register</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="registerForm" (ngSubmit)="handleSubmitForm()">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="name"
+                placeholder="Name"
+              />
+              <label for="floatingInput">Name</label>
+            </div>
+            @if(registerForm.controls['name'].invalid&&(registerForm.controls['name'].touched||registerForm.controls['name'].dirty)){
+            @if (registerForm.controls['name'].errors?.['required']) {
+
+            <div class="text-danger mb-3 mx-2">Name Required</div>
+            }}
+            <div class="form-floating mb-3">
+              <input
+                type="email"
+                class="form-control"
+                formControlName="email"
+                placeholder="Email"
+              />
+              <label for="floatingInput">Email address</label>
+            </div>
+            @if(registerForm.controls['email'].invalid&&(registerForm.controls['email'].touched||registerForm.controls['email'].dirty)){
+            @if (registerForm.controls['email'].errors?.['required']) {
+
+            <div class="text-danger mb-3 mx-2">Email Required</div>
+            } @if(registerForm.controls['email'].errors?.['email']){
+            <div class="text-danger mb-3 mx-2">Invalid Email Format</div>
+            } }
+
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="username"
+                placeholder="username"
+              />
+              <label for="floatingInput">Username</label>
+            </div>
+            @if(registerForm.controls['username'].invalid&&(registerForm.controls['username'].touched||registerForm.controls['username'].dirty)){
+            @if (registerForm.controls['username'].errors?.['required']) {
+
+            <div class="text-danger mb-3 mx-2">username Required</div>
+            } @if(registerForm.controls['username'].errors?.['pattern']){
+
+            <div class="text-danger mb-3 mx-2">Invalid Username Format</div>
+            } }
+
+            <div class="form-floating mb-3">
+              <input
+                type="password"
+                class="form-control"
+                formControlName="password"
+                placeholder="Password"
+              />
+              <label for="floatingPassword">Password</label>
+            </div>
+
+            @if(registerForm.controls['password'].invalid&&(registerForm.controls['password'].touched||registerForm.controls['password'].dirty)){
+            @if (registerForm.controls['password'].errors?.['required']) {
+
+            <div class="text-danger mb-3 mx-2">password Required</div>
+            } @if(registerForm.controls['password'].errors?.['pattern']){
+            <div class="text-danger mb-3 mx-2">Invalid Password Format</div>
+            } }
+
+            <div class="form-floating mb-3">
+              <input
+                type="password"
+                class="form-control"
+                formControlName="passwordConfirm"
+                placeholder="Confirm Password"
+              />
+              <label for="floatingConfirmPassword">Confirm Password</label>
+            </div>
+
+            @if(registerForm.controls['passwordConfirm'].invalid&&(registerForm.controls['passwordConfirm'].touched||registerForm.controls['passwordConfirm'].dirty)){
+            @if (registerForm.controls['passwordConfirm'].errors?.['required'])
+            {
+            <div class="text-danger mb-3 mx-2">
+              Password Confirmation Required
+            </div>
+            } @if(registerForm.errors?.['PasswordNoMatch']){
+            <div class="text-danger mb-3 mx-2">Password Doesn't Match</div>
+            } }
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="registerForm.invalid"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+        <div class="card-footer text-center">
+          Already have an account? <a routerLink="/login">Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
