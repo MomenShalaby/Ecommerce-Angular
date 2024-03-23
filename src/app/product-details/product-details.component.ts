@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import productsData from '../../assets/products-list.json';
 import { Product } from '../interfaces/product';
 import { CommonModule } from '@angular/common';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -16,12 +17,13 @@ export class ProductDetailsComponent {
   product: any;
   @Input() id?: number;
 
-  constructor(private activatedRoute: ActivatedRoute) {
-    // const id: any = this.activatedRoute.snapshot.id;
-  }
+  cartItems = [{}];
 
-  get stars() {
-    return Array(Math.floor(this.product.rating)).fill(0);
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private cart: CartService
+  ) {
+    // const id: any = this.activatedRoute.snapshot.id;
   }
 
   ngOnInit(): void {
@@ -30,5 +32,15 @@ export class ProductDetailsComponent {
     // const id: any = this.activatedRoute.snapshot.params['id'];
     // console.log(this.id, 'from details');
     this.product = this.products.find((p: any) => p.id == this.id);
+    this.cart.getCart().subscribe((value) => (this.cartItems = value));
+  }
+
+  get stars() {
+    return Array(Math.floor(this.product.rating)).fill(0);
+  }
+
+  addToCart() {
+    this.cart.setCart(this.product.id);
+    console.log(this.cartItems);
   }
 }

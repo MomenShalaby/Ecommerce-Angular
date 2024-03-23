@@ -12,7 +12,7 @@
     <div class="img-container">
       <img [src]="product.images[0]" class="img-fluid w-100 img-card" />
       <div class="prodDetails">
-        <button class="btn btn-secondary" (click)="addToCart(product.id)">
+        <button class="btn btn-secondary" (click)="productDetails(product.id)">
           View Product Details
         </button>
       </div>
@@ -32,7 +32,7 @@
         <i class="fa fa-star-half" *ngIf="product.rating % 1 !== 0"></i>
         <span class="mx-2">({{ product.rating }})</span>
       </div>
-      <button class="btn btn-primary fw-bold">Add to Cart</button>
+      <button class="btn btn-primary fw-bold" (click)="addToCart()">Add to Cart</button>
     </div>
   </div>
 </div>

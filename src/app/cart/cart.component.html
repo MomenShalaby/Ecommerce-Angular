@@ -1,1 +1,53 @@
-<p>cart works!</p>
+<div class="container text-center">
+  <div class="row">
+    <div class="col text-center">
+      <p>Description</p>
+    </div>
+    <div class="col text-center">
+      <p>Quantity</p>
+    </div>
+    <div class="col text-center">
+      <p>Remove</p>
+    </div>
+    <div class="col text-center">
+      <p>Price</p>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    @for( item of cart ; track item.id){
+    <div class="col text-center">
+      <div class="d-flex text-center">
+        <div>
+          <img
+            [src]="cart[0]?.thumbnail"
+            alt=""
+            class="img-fluid"
+            style="width: 100px; height: 100px"
+          />
+        </div>
+        <div class="d-flex flex-column justify-content-center">
+          <p>
+            {{ cart[0]?.title }}
+          </p>
+          <p>
+            {{ cart[0]?.title }}
+          </p>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-dark">+</button>
+        {{ cart[0]?.thumbnail }}
+        <button class="btn btn-light">-</button>
+      </div>
+      <div>
+        <button class="btn btn-danger">x</button>
+      </div>
+      <div>
+        {{ cart[0]?.price }}
+      </div>
+    </div>
+    <hr />
+    }
+  </div>
+</div>
