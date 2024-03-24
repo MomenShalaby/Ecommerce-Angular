@@ -4,6 +4,7 @@ import productsData from '../../assets/products-list.json';
 import { Product } from '../interfaces/product';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../services/cart.service';
+import { ProductsService } from '../services/products.service';
 
 @Component({
   selector: 'app-product-details',
@@ -13,25 +14,28 @@ import { CartService } from '../services/cart.service';
   styleUrl: './product-details.component.css',
 })
 export class ProductDetailsComponent {
-  products: Array<Product> = productsData;
-  product: any;
-  @Input() id?: number;
+  // products: Array<Product> = productsData;
+  @Input() id?: any;
+  product: any = {};
 
   cartItems = [{}];
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private cart: CartService
+    private cart: CartService,
+    private productService: ProductsService
   ) {
     // const id: any = this.activatedRoute.snapshot.id;
   }
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    // const id: any = this.activatedRoute.snapshot.params['id'];
-    // console.log(this.id, 'from details');
-    this.product = this.products.find((p: any) => p.id == this.id);
+    // this.product = this.products.find((p: any) => p.id == this.id);
+    // this.product = this.productService.getProduct(this.id);
+    this.productService
+      .getProduct(this.id)
+      .subscribe((res) => (this.product = res));
+console.log(this.product);
+
     this.cart.getCart().subscribe((value) => (this.cartItems = value));
   }
 

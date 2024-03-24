@@ -21,7 +21,9 @@ export class ProductCardComponent {
   }
 
   productDetails(id: any) {
-    this.router.navigate(['product-details', id]);
+    //  this.router.navigate([`/game-details/${id}`])
+
+    this.router.navigate([`/product-details/${id}`]);
   }
 
   addToCart() {
