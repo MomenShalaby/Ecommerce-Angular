@@ -33,15 +33,15 @@ export class ProductDetailsComponent {
     // this.product = this.productService.getProduct(this.id);
     this.productService
       .getProduct(this.id)
-      .subscribe((res) => (this.product = res));
-console.log(this.product);
-
+      // .subscribe((res) => (this.product = res));
+      .subscribe((res) => (console.log(res)));
+    console.log(this.product);
     this.cart.getCart().subscribe((value) => (this.cartItems = value));
   }
 
-  get stars() {
-    return Array(Math.floor(this.product.rating)).fill(0);
-  }
+  // get stars() {
+  //   return Array(Math.floor(this.product.rating)).fill(0);
+  // }
 
   addToCart() {
     this.cart.setCart(this.product.id);

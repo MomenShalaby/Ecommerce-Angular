@@ -11,10 +11,12 @@ import { ProductsService } from '../services/products.service';
 export class CartComponent {
   cart: any = [];
 
-  constructor(private cartService: CartService,private product:ProductsService) {}
+  constructor(
+    private cartService: CartService,
+    private product: ProductsService
+  ) {}
 
   ngOnInit(): void {
-    
     this.cartService.getCart().subscribe((value) => (this.cart = value));
   }
 }
